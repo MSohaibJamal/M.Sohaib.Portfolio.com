@@ -13,12 +13,23 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const emailJsServiceId = import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
-  const emailJsTemplateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
-  const emailJsPublicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
-  const contactName = import.meta.env.VITE_APP_CONTACT_NAME || "Sohaib Jamal";
+  const emailJsServiceId =
+    import.meta.env.VITE_EMAILJS_SERVICE_ID ||
+    import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
+  const emailJsTemplateId =
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID ||
+    import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
+  const emailJsPublicKey =
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY ||
+    import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+  const contactName =
+    import.meta.env.VITE_CONTACT_NAME ||
+    import.meta.env.VITE_APP_CONTACT_NAME ||
+    "Sohaib Jamal";
   const contactEmail =
-    import.meta.env.VITE_APP_CONTACT_EMAIL || "sohaibjamal140@gmail.com";
+    import.meta.env.VITE_CONTACT_EMAIL ||
+    import.meta.env.VITE_APP_CONTACT_EMAIL ||
+    "sohaibjamal140@gmail.com";
 
   const [loading, setLoading] = useState(false);
   const isFormComplete =
@@ -44,7 +55,7 @@ const Contact = () => {
 
     if (!emailJsServiceId || !emailJsTemplateId || !emailJsPublicKey) {
       alert(
-        "Email is not configured yet. Please add your EmailJS service ID, template ID, and public key to the .env file."
+        "Email is not configured yet. Add VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your local .env and in your Vercel project settings."
       );
       return;
     }
